@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_presensi extends CI_Controller {
+class C_presensi extends My_Controller {
 
 	function __construct() {
         parent::__construct();
@@ -11,7 +11,9 @@ class C_presensi extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('presensi');
+		$content = $this->load->view('presensi','',true);
+		parent::temp($content);
+		// $this->load->view('presensi');
 	}
 
 

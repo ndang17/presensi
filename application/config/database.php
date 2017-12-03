@@ -7,13 +7,16 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	// 'hostname' => 'localhost',
-	// 'username' => 'root',
-	// 'password' => '',
-	'hostname' => '10.1.30.88',
-	'username' => 'it',
-	'password' => 'itypap888',
-	'database' => 'siak4',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'db_presensi',
+
+	// 'hostname' => '10.1.30.88',
+	// 'username' => 'it',
+	// 'password' => 'itypap888',
+	// 'database' => 'siak4',
+
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
