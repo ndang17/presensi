@@ -47,37 +47,37 @@
   var no_element = 1;
   var arr_element = [1];
 
-  var data_dosen = [
-    {
-     "nik": "111",
-     "name": "Finsen"
-   },
-   {
-     "nik": "222",
-     "name": "Amir"
-   },{
-    "nik": "333",
-    "name": "Guru"
-  },
-  {
-    "nik": "444",
-    "name": "Waskito"
-  },{
-   "nik": "555",
-   "name": "Ade F"
- },
- {
-   "nik": "666",
-   "name": "Woyo"
- },{
-  "nik": "777",
-  "name": "Gandi"
-},
-{
-  "nik": "888",
-  "name": "Asfar"
-}
-];
+//   var data_dosen = [
+//     {
+//      "nik": "111",
+//      "name": "Finsen"
+//    },
+//    {
+//      "nik": "222",
+//      "name": "Amir"
+//    },{
+//     "nik": "333",
+//     "name": "Guru"
+//   },
+//   {
+//     "nik": "444",
+//     "name": "Waskito"
+//   },{
+//    "nik": "555",
+//    "name": "Ade F"
+//  },
+//  {
+//    "nik": "666",
+//    "name": "Woyo"
+//  },{
+//   "nik": "777",
+//   "name": "Gandi"
+// },
+// {
+//   "nik": "888",
+//   "name": "Asfar"
+// }
+// ];
 
 $(document).ready(function () {
 
@@ -90,7 +90,6 @@ $(document).ready(function () {
 
     // console.log(moment().format('YYYY-MM-DD HH:MM:SS'));
 
-    // console.log(data_dosen);
 
 });
 
@@ -122,10 +121,15 @@ $(document).ready(function () {
 
   function load_data_lecturer(id) {
     var select_id = $('#'+id);
-    for(var i=0;i<data_dosen.length;i++){
-      select_id.append('<option value="'+data_dosen[i]['nik']+'">'+data_dosen[i]['name']+'</option>');
-      // console.log(data_dosen[i]['nik']);
-    }
+    var url_get = "<?php echo base_url('get-dosen'); ?>";
+    $.get( url_get, function( data ) {
+        var data_dosen = JSON.parse(data);
+        // console.log(data_dosen);
+        for(var i=0;i<data_dosen.length;i++){
+          select_id.append('<option value="'+data_dosen[i]['nip']+' - '+data_dosen[i]['nama']+'">'+data_dosen[i]['nama']+'</option>');
+        }
+      });
+
     select_id.addClass('chosen-select');
   }
 
@@ -202,11 +206,6 @@ $(document).ready(function () {
 
 
 
-  function genrate_barcode(element,id_unik) {
-    // console.log(element);
-    // console.log(id_unik);
-    $("#"+element).barcode(id_unik, "code128",{barWidth:1, barHeight:30,showHRI:true,output:"svg"});
 
-  }
 
 </script>

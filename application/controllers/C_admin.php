@@ -6,6 +6,10 @@ class C_admin extends My_Controller {
 	function __construct() {
         parent::__construct();
 				$this->load->model('M_barcode');
+				$session_nik = $this->session->userdata('nik');
+				if($session_nik=='' || $session_nik==null){
+					redirect(base_url());
+				}
     }
 
 
@@ -33,7 +37,7 @@ class C_admin extends My_Controller {
 
 	public function management_barcode()
 	{
-		$data_page['barcode'] = $this->M_barcode->get_bacode();
+		$data_page['barcode'] = $this->M_barcode->get_all_bacode('ASC');
 		$content_admin = $this->load->view('admin/management_barcode',$data_page,true);
 		$this->admin_temp($content_admin);
 	}
@@ -54,6 +58,15 @@ class C_admin extends My_Controller {
 		for($i=0;$i<count($ar_data);$i++){
 			$this->db->insert('barcode', $ar_data[$i]);
 		}
+	}
+
+
+
+	public function get_dosen()
+	{
+		$data = $this->M_barcode->get_dosen();
+		$data_dosen = json_encode($data);
+		print_r($data_dosen);
 	}
 
 }
