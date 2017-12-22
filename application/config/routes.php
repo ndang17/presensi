@@ -10,6 +10,8 @@ $route['admin'] = 'c_admin';
 $route['admin/create-barcode'] = 'c_admin/create_barcode';
 $route['admin/barcode'] = 'c_admin/management_barcode';
 
+$route['delete-barcode'] = 'c_admin/delete_barcode';
+
 // database
 $route['admin/insert-barcode'] = 'c_admin/insert_barcode';
 $route['get-dosen'] = 'c_admin/get_dosen';

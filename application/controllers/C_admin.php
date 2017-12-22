@@ -69,4 +69,21 @@ class C_admin extends My_Controller {
 		print_r($data_dosen);
 	}
 
+	public function delete_barcode(){
+        $barcode = $this->input->post('barcode');
+        $delete_log = $this->input->post('delete_log');
+
+        if($delete_log==0){
+            $tables = array('barcode');
+        } else {
+            $tables = array('barcode', 'logging');
+        }
+
+
+        $this->db->where('barcode', ''+$barcode);
+        $this->db->delete($tables);
+
+
+    }
+
 }
