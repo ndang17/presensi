@@ -41,18 +41,35 @@
                         if($i!=0){
                             $koma ='<br/>';
                         }
-//                        echo $item_dosen[$i];
                         $dsn = $dsn.''.$koma.''.$item_dosen[$i];
                     }
 
+                    $item_mk = json_decode($item['matakuliah']);
+                    $mk = '';
+                    $koma = '';
+                    for($i=0;$i<count($item_mk);$i++){
+                        if($i!=0){
+                            $koma ='<br/>';
+                        }
+                        $mk = $mk.''.$koma.''.$item_mk[$i];
+                    }
+
                     echo $dsn;
+
+                    echo '<hr style="margin-top:5px;margin-bottom:5px;border-top:1px solid #4CAF50;" />';
+
+                    echo $mk;
+
+                    echo '<hr style="margin-top:5px;margin-bottom:5px;border-top:1px solid #4CAF50;" />';
+
+                    echo "<b>".$item['group_kelas']."</b>";
 
                     ?>
                 </td>
                 <td style="text-align:right;"><?php echo date("d F Y", strtotime($item['create_at'])); ?></td>
                 <td style="text-align:center;">
                     <!-- <button class="btn btn-warning btn-sm"><i class="fa fa-print" aria-hidden="true"></i></button> -->
-                    <button class="btn btn-success btn-sm disabled"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+<!--                    <button class="btn btn-success btn-sm disabled"><i class="fa fa-pencil" aria-hidden="true"></i></button>-->
                     <button class="btn btn-warning btn-sm" onclick="print('#row<?php echo $no; ?>')"><i class="fa fa-print" aria-hidden="true"></i></button>
                     <button class="btn btn-danger btn-sm btn-delete" row-id="row<?php echo $no; ?>" data-barcode="<?php echo $item['barcode']; ?>" data-dsn="<?php echo $dsn; ?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>

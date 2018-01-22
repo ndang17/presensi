@@ -64,7 +64,7 @@
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="<?php if($this->uri->segment(2)=='' || $this->uri->segment(2)=='today'){ echo 'active';} ?>"><a href="<?php echo base_url('logging/today'); ?>">Today</a></li>
                     <li role="presentation" class="<?php if($this->uri->segment(2)=='all'){ echo 'active';} ?>"><a href="<?php echo base_url('logging/all'); ?>">All Log</a></li>
-                    <li role="presentation" class="<?php if($this->uri->segment(2)=='presensi'){ echo 'active';} ?>"><a href="<?php echo base_url('logging/presensi'); ?>">Presensi</a></li>
+<!--                    <li role="presentation" class="--><?php //if($this->uri->segment(2)=='presensi'){ echo 'active';} ?><!--"><a href="--><?php //echo base_url('logging/presensi'); ?><!--">Presensi</a></li>-->
                 </ul>
                 <hr>
 
@@ -86,6 +86,19 @@
         $('#modal_panel_scan').on('shown.bs.modal', function () {
             $('#input_code').focus();
         });
+    });
+
+    $(document).on('click','.showBlmKembali',function () {
+
+        var code = $(this).attr('data-barcode');
+        var url = '<?php echo base_url('logging/detail-belum-kembali'); ?>';
+        $.post(url,{code : code},function (html) {
+
+            $('#modalDetailLog .modal-title').html('Detail barcode '+code);
+            $('#modalDetailLog .modal-body').html(html);
+            $('#modalDetailLog').modal('show');
+        });
+
     });
 </script>
 
@@ -114,3 +127,22 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Detail Barcode -->
+<div class="modal fade" id="modalDetailLog" role="dialog">
+    <div class="modal-dialog jackInTheBox animated" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

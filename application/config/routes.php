@@ -15,6 +15,7 @@ $route['delete-barcode'] = 'c_admin/delete_barcode';
 // database
 $route['admin/insert-barcode'] = 'c_admin/insert_barcode';
 $route['get-dosen'] = 'c_admin/get_dosen';
+$route['get-daftarAllMK'] = 'c_admin/get_daftarAllMK';
 $route['get-report'] = 'c_admin/get_report';
 
 $route['insert-log'] = 'c_presensi/insert_log';
@@ -34,6 +35,7 @@ $route['user-log'] = 'c_presensi/get_user_log';
 $route['data-barcode'] = 'c_presensi/get_barcode';
 
 $route['logging/belum-kembali'] = 'c_presensi/get_all_ambil';
+$route['logging/detail-belum-kembali'] = 'c_presensi/get_detail_log';
 
 $route['set-session'] = 'c_presensi/set_session';
 $route['log-out'] = 'c_presensi/log_out';

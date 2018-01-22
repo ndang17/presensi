@@ -47,7 +47,7 @@
           }
 
           tr.append("<tr>"+
-          "<td><span style='color:blue;'>"+data_json[i].barcode+"</span>"+
+          "<td><a href='javascript:void(0)' class='showBlmKembali' data-barcode='"+data_json[i].barcode+"' >"+data_json[i].barcode+"</a> -"+data_json[i].group_kelas+" "+
           "<div style='float:right;'>"+
           "<span style='padding-right:5px;'>"+moment(data_json[i].scan_at).format('dddd, Do MMM YYYY h:mm:ss')+ "</span>"+status_folder+"</div>"+
           "<br/>"+dosen+"</td><td style='text-align:center;'><button class='btn btn-danger btn-sm' disabled><span class='glyphicon glyphicon-trash'></span></button></td>"+

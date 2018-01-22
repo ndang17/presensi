@@ -5,7 +5,7 @@
         print('#table_today');
     });
 </script>
-<table id="table_today" class="table table-striped">
+<table id="table_today" class="table table-hover">
   <!-- <thead>
     <tr>
       <th style="text-align:center;">Log</th>
@@ -20,7 +20,7 @@
      foreach ($today as $item) { ?>
       <tr>
         <td>
-          <span style='color:blue;'><?php echo $item['barcode']; ?></span>
+          <a href="javascript:void(0)" class="showBlmKembali" data-barcode="<?php echo $item['barcode']; ?>"><?php echo $item['barcode']; ?></a> - <?php echo $item['group_kelas']; ?>
           <div style="float:right;">
             <span id="sc<?php echo $no; ?>" style="padding-right:5px;">
               <script type="text/javascript">
@@ -46,12 +46,23 @@
            <br>
            <?php
             $data_dosen = json_decode($item['lecturer']);
+            $data_mk = json_decode($item['matakuliah']);
             for($i=0;$i<count($data_dosen);$i++){
               if($i!=0){
                 echo ", ";
               }
               echo $data_dosen[$i];
             }
+//           echo '<hr style="margin-top:5px;margin-bottom:5px;border-top:0.5px solid #4CAF50;" />';
+            echo '<div class="well" style="padding: 5px;">';
+            for($i=0;$i<count($data_mk);$i++){
+                if($i!=0){
+                    echo ", ";
+                }
+                echo $data_mk[$i];
+            }
+
+            echo '</div>';
 
             ?>
         </td>
@@ -60,10 +71,3 @@
 
   </tbody>
 </table>
-
-
-<script type="text/javascript">
-  function format_date(date,element) {
-
-  }
-</script>

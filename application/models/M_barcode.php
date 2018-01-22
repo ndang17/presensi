@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_barcode extends CI_model {
 
+    function __construct() {
+        parent::__construct();
+        $this->db_server = $this->load->database('server', TRUE);
+        $this->db = $this->load->database('default', TRUE);
+
+    }
+
   public function get_all_bacode($order_by)
   {
     $data = $this->db->query('SELECT * FROM db_presensi.barcode ORDER BY id_barcode '.$order_by);
@@ -11,8 +18,13 @@ class M_barcode extends CI_model {
 
   public function get_dosen()
   {
-    $data = $this->db->query('SELECT nip, nama FROM siak4.dosen');
+    $data = $this->db_server->query('SELECT nip, nama FROM siak4.dosen');
     return $data->result_array();
+  }
+
+  public function get_daftarAllMK(){
+      $data = $this->db_server->query('SELECT ID, MKKode,Nama FROM siak4.matakuliah');
+      return $data->result_array();
   }
 
   public function get_bacode_log($barcode)
@@ -33,7 +45,7 @@ class M_barcode extends CI_model {
 
   public function get_log()
   {
-    $data = $this->db->query('SELECT lg.*,bc.lecturer FROM db_presensi.logging lg
+    $data = $this->db->query('SELECT lg.*,bc.lecturer,bc.matakuliah, bc.group_kelas FROM db_presensi.logging lg
                             JOIN db_presensi.barcode bc
                               ON (lg.barcode = bc.barcode)
                               ORDER BY lg.id_logging DESC');
@@ -42,7 +54,7 @@ class M_barcode extends CI_model {
 
   public function log_today($date)
   {
-    $data = $this->db->query("SELECT lg.*,bc.lecturer FROM db_presensi.logging lg
+    $data = $this->db->query("SELECT lg.*,bc.lecturer,bc.matakuliah, bc.group_kelas FROM db_presensi.logging lg
                             JOIN db_presensi.barcode bc
                             ON (lg.barcode = bc.barcode)
                               WHERE DATE(lg.scan_at) = '".$date."'
@@ -52,7 +64,7 @@ class M_barcode extends CI_model {
 
   public function get_user_log($barcode)
   {
-    $data = $this->db->query('SELECT lg.*,bc.lecturer FROM db_presensi.logging lg
+    $data = $this->db->query('SELECT lg.*,bc.lecturer,bc.matakuliah, bc.group_kelas FROM db_presensi.logging lg
                             JOIN db_presensi.barcode bc
                               ON (lg.barcode = bc.barcode)
                               WHERE lg.barcode = "'.$barcode.'"

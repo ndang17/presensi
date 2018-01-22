@@ -86,6 +86,13 @@ class C_presensi extends My_Controller {
 		print_r($data_json);
 	}
 
+	public function get_detail_log(){
+	    $barcode = $this->input->post('code');
+	    $data['log'] = $this->M_barcode->get_user_log($barcode);
+	    $this->load->view('table/modal_detail_log',$data);
+
+    }
+
 	public function get_barcode()
 	{
 		$data = $this->M_barcode->get_all_bacode('ASC');

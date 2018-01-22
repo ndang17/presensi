@@ -30,8 +30,9 @@ function get_blm_kembali() {
 
             $('#panel_blm_kembali').append('<div class="alert alert-warning">' +
                 '<p style="text-align: right;font-size: 0.9em;">'+moment(data_json[i].scan_at).format('dddd, Do MMM YYYY h:mm:ss')+'</p>' +
-                '<hr style="margin: 5px;"/><b>'+data_json[i].barcode+'</b>' +
-                '<br/>'+dosen+'</div>');
+                '<hr style="margin: 5px;"/><a href="javascript:void(0)" class="showBlmKembali" data-barcode="'+data_json[i].barcode+'">'+data_json[i].barcode+'</a> - '+data_json[i].group_kelas+' ' +
+                // '<br/>'+dosen+'' +
+                '</div>');
 
             // $('#panel_blm_kembali').append('<tr>' +
             //     '<td>'+data_json[i].barcode+'<br/>'+dosen+'<br/>'+moment(data_json[i].scan_at).format('dddd, Do MMM YYYY h:mm:ss')+'</td>' +
